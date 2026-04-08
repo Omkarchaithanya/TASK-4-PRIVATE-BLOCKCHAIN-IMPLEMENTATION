@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Private Blockchain dApp</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg-1: #0a1f1c;
+        --bg-2: #13342e;
+        --accent: #f5b841;
+        --accent-2: #57d6b3;
+        --text: #eef7f3;
+        --muted: #b9c9c3;
+        --panel: rgba(8, 20, 18, 0.7);
+        --border: rgba(255, 255, 255, 0.18);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Space Grotesk", sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(circle at 15% 15%, rgba(87, 214, 179, 0.2), transparent 40%),
+          radial-gradient(circle at 85% 20%, rgba(245, 184, 65, 0.2), transparent 38%),
+          linear-gradient(140deg, var(--bg-1), var(--bg-2));
+        display: grid;
+        place-items: center;
+        padding: 24px;
+      }
+
+      .orb {
+        position: fixed;
+        border-radius: 50%;
+        filter: blur(24px);
+        pointer-events: none;
+        opacity: 0.5;
+        animation: float 8s ease-in-out infinite;
+      }
+
+      .orb.one {
+        width: 180px;
+        height: 180px;
+        background: #57d6b3;
+        top: 10%;
+        left: 6%;
+      }
+
+      .orb.two {
+        width: 220px;
+        height: 220px;
+        background: #f5b841;
+        right: 6%;
+        bottom: 10%;
+        animation-delay: 1.2s;
+      }
+
+      .card {
+        width: min(760px, 100%);
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        padding: 28px;
+        background: var(--panel);
+        backdrop-filter: blur(8px);
+        box-shadow: 0 12px 42px rgba(0, 0, 0, 0.35);
+        animation: enter 500ms ease;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(1.6rem, 4vw, 2.4rem);
+      }
+
+      p {
+        color: var(--muted);
+      }
+
+      .row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin: 16px 0;
+      }
+
+      button {
+        border: 0;
+        border-radius: 12px;
+        padding: 12px 16px;
+        font-family: "Space Grotesk", sans-serif;
+        font-weight: 700;
+        cursor: pointer;
+        transition: transform 160ms ease, opacity 160ms ease;
+      }
+
+      button:hover {
+        transform: translateY(-2px);
+      }
+
+      button:active {
+        transform: translateY(0);
+      }
+
+      .btn-primary {
+        background: var(--accent);
+        color: #1f1807;
+      }
+
+      .btn-secondary {
+        background: transparent;
+        color: var(--text);
+        border: 1px solid var(--border);
+      }
+
+      input {
+        width: 100%;
+        padding: 12px;
+        border-radius: 10px;
+        border: 1px solid var(--border);
+        background: rgba(0, 0, 0, 0.25);
+        color: var(--text);
+        font-family: "IBM Plex Mono", monospace;
+      }
+
+      .readout {
+        margin-top: 16px;
+        padding: 14px;
+        border-radius: 12px;
+        border: 1px dashed var(--border);
+        background: rgba(255, 255, 255, 0.04);
+        font-family: "IBM Plex Mono", monospace;
+      }
+
+      .meta {
+        font-size: 0.85rem;
+        color: var(--muted);
+      }
+
+      .status {
+        font-size: 0.9rem;
+      }
+
+      @keyframes enter {
+        from {
+          transform: translateY(12px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      @keyframes float {
+        0%, 100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-14px);
+        }
+      }
+
+      @media (max-width: 680px) {
+        .card {
+          padding: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="orb one"></div>
+    <div class="orb two"></div>
+
+    <main class="card">
+      <h1>Local Private Blockchain dApp</h1>
+      <p>Interact with a <strong>SimpleStorage</strong> smart contract deployed on your own Ethereum network.</p>
+
+      <div class="row">
+        <button id="connectBtn" class="btn-primary">Connect Wallet</button>
+        <button id="refreshBtn" class="btn-secondary">Read Message</button>
+      </div>
+
+      <label for="messageInput">New message</label>
+      <input id="messageInput" placeholder="Write on-chain message" />
+
+      <div class="row">
+        <button id="updateBtn" class="btn-primary">Update Message On-Chain</button>
+      </div>
+
+      <div class="readout" id="messageView">Current message: (not loaded)</div>
+      <p class="status" id="statusText">Status: waiting for wallet connection</p>
+      <p class="meta" id="metaText">Network: unknown | Contract: unknown</p>
+    </main>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
