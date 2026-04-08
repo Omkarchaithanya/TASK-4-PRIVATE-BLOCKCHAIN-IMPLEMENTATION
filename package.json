@@ -1,0 +1,22 @@
+{
+	"name": "task-4-private-blockchain-implementation",
+	"version": "1.0.0",
+	"private": true,
+	"description": "Private blockchain setup using Ethereum (Hardhat) with a sample dApp",
+	"engines": {
+		"node": ">=18 <23"
+	},
+	"scripts": {
+		"clean": "hardhat clean",
+		"compile": "hardhat compile",
+		"node": "hardhat node",
+		"deploy:local": "hardhat run scripts/deploy.js --network localhost",
+		"deploy:hardhat": "hardhat run scripts/deploy.js --network hardhat",
+		"serve:dapp": "http-server frontend -p 3000 -c-1"
+	},
+	"devDependencies": {
+		"@nomicfoundation/hardhat-toolbox": "^5.0.0",
+		"hardhat": "^2.22.17",
+		"http-server": "^14.1.1"
+	}
+}
