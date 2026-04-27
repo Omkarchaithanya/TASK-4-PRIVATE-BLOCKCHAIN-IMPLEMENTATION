@@ -1,5 +1,16 @@
 # Task 4: Private Blockchain Implementation (Ethereum + Hardhat)
+## Internship Details
 
+| Field | Details |
+|-------|---------|
+| **Company** | CODTECH IT SOLUTIONS PVT.LTD |
+| **Name** | OMKAR CHAITHANYA R |
+| **Intern ID** | CTIS4640 |
+| **Domain** | Blockchain Technology |
+| **Batch Duration** | 12 Weeks |
+| **Mentor** | Neela Santhosh Kumar |
+
+---
 This project sets up a **private Ethereum blockchain** using Hardhat and deploys a sample smart contract with a working dApp frontend.
 
 ## Deliverables Included
